@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: {{ .Release.Name }}-ing
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  namespace: {{ .Release.Name }}-ns
+spec: 
+  rules: 
+    - host: dev-web.agriaku.com
+      http: 
+        paths: 
+          - path: /{{ .Release.Name }}(/|$)(.*)
+            pathType: Prefix
+            backend: 
+              service:
+                name: {{ .Release.Name }}-svc
+                port: 
+                  number: 8080

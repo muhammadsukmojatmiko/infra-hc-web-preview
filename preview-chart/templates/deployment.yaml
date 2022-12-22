@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    {{- include "preview-chart.labels" . | nindent 4 }}
+  namespace: {{ .Release.Name }}-ns
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      {{- include "preview-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "preview-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: app
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthcheck.endpoint }}
+            port: {{ .Values.ports.containerPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 50
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: {{ .Values.healthcheck.endpoint }}
+            port: {{ .Values.ports.containerPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 50
+        ports:
+        - containerPort: {{ .Values.ports.containerPort }}

@@ -1,0 +1,15 @@
+
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+
+QUICK INFO:
+- CHART: {{ include "preview-chart.chart" . }}
+- RELEASE_NAME: {{ .Release.Name }}
+- IMAGE: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+- ACCESS: dev-web.agriaku.com/{{ .Release.Name  }}/
