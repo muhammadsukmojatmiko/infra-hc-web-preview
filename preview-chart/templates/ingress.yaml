@@ -4,14 +4,13 @@ metadata:
   name: {{ .Release.Name }}-ing
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
   namespace: {{ .Release.Name }}-ns
 spec: 
   rules: 
-    - host: dev-web.agriaku.com
+    - host: preview-{{ .Release.Name }}.agriaku.com
       http: 
         paths: 
-          - path: /{{ .Release.Name }}(/|$)(.*)
+          - path: /
             pathType: Prefix
             backend: 
               service:
