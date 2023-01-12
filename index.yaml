@@ -2,12 +2,12 @@ apiVersion: v1
 entries:
   preview-chart:
   - apiVersion: v2
-    created: "2022-12-22T14:07:17.592113605+07:00"
+    created: "2023-01-12T10:43:38.989534533+07:00"
     description: A Helm chart Preview App (Web Frontend Team)
-    digest: 7d40b72bbabb608a8a914c78dec5cda2218c171d7489f97c610f6075ac4e2724
+    digest: 502e2d8bd17355fbf7b50a3d7d711986eeaaa5b9b1e618bd888d22d55ee14fee
     name: preview-chart
     type: application
     urls:
-    - https://github.com/muhammadsukmojatmiko/infra-hc-web-preview/preview-chart-1.0.0.tgz
+    - https://github.com/Agriaku/infra-frontend-preview-hc-preview-chart/preview-chart-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-22T14:07:17.591799049+07:00"
+generated: "2023-01-12T10:43:38.989257644+07:00"
